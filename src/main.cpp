@@ -32,8 +32,9 @@ int main()
        
        execvp("ls",argv);
      }
-
-      strcpy(arg[0],"mkdir");    
+      
+      argv[0] = new char[4];
+      strcpy(argv[0],"mkdir");    
      else if(argv[0] == "mkdir")
      { 
        argv[1] = "-m";
@@ -48,11 +49,13 @@ int main()
        execvp("mkdir",argv);  
       }
 
+	argv[0] = new char[4];
+       strcpy(argv[0],"git");
       else if(argv[0] == "git")
       {
-        argv[0] = new char[4];
-        strcpy(argv[0],"git");
         argv[1] = "commit";
+        strcpy(argv[1],"commit");
+
         argv[2] = "-p";
         argv[3] = "-v";
 
@@ -63,15 +66,14 @@ int main()
 
    }
 
-   else if(pid == -1)
+   else
     {
 	perror("There was an error in the fork()");
 	wait(NULL);
 	cout << "I'm a parent." << endl;
 	} 
-   else
-   { 
+  
    return(0);
-    }
+
 }
 
