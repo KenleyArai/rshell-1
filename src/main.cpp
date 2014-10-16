@@ -69,7 +69,9 @@ int main()
 	wait(NULL);
 	cout << "I'm a parent." << endl;
 	} 
-
-return(0);
+   else
+   { 
+   return(0);
+    }
 }
 
