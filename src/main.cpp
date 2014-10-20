@@ -6,74 +6,86 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <stdlib.h>
 
+/*
+const int char_limit = 10000;
+
+char *String_Parsing(int argc, char *argv[]);
+*/
 using namespace std;
 
 int main()
 {
-  int pid = fork();
-  
-  if(pid == 0)
+  int pid = fork();       // The return value when fork() is performed is a 0 or -1.
+                          // It is set into the variable pid (Processor ID).
+ 
+  if(pid == -1)           // If pid equals to -1 then the fork failed.
   {
-     char *argv[4];
-     argv[0] = new char[4];
+    perror("fork() failed completely");   // Prints an error message when fork() failed
     
-      strcpy(argv[0],"ls");
-     if(argv[0] == "ls")
-     {
-       argv[1] = "-a";
-       strcpy(argv[1],"-a");
+  }
 
-       argv[2] = "-l";
-       strcpy(argv[2],"-l");
-
-       argv[3] = "-d";
-       strcpy(argv[3],"-d");
-       
-       execvp("ls",argv);
-     }
-      
-      argv[0] = new char[4];
-      strcpy(argv[0],"mkdir");    
-     else if(argv[0] == "mkdir")
-     { 
-       argv[1] = "-m";
-       strcpy(argv[1],"-m");
-
-       argv[2] = "-p";
-       strcpy(argv[2],"-p");
-
-       argv[3] = "-v";
-       strcpy(argv[3],"-v");
-
-       execvp("mkdir",argv);  
-      }
-
-	argv[0] = new char[4];
-       strcpy(argv[0],"git");
-      else if(argv[0] == "git")
-      {
-        argv[1] = "commit";
-        strcpy(argv[1],"commit");
-
-        argv[2] = "-p";
-        argv[3] = "-v";
-
-        execvp("mkdir",argv); 
-      }
+  else if(pid == 0)             /* If pid equals to 0 then the fork succeeded. All contents from the parent process is given to the new child process*/
+  {
+    string command;
      
-     cout << "i'm a child." << endl; 
+    cout << "$ ";
+    getline(cin,command);
+    char *cmd = new char[command.length() + 1];
+    strcpy(cmd, command.c_str());
+    char **argv = new char*[100];
+    char *token;
+
+    token = strtok(cmd, " ");
+
+    int i = 0;
+    while( token != NULL)
+    {
+      cout << token << endl;
+
+      argv[i] = token;
+      token = strtok(NULL, " ");
+      i++;
+    }
+
+    argv[i] = 0;
+
+    execvp(argv[0], argv);
+   
+    cout << "Print: " << command << endl;
+
+    
+  //  cout << "$ ";
+
+   // cin.getline(cin, name);
+
+   // stcrcpy(name, cmd);
+
+    
+    
+   // execvp("ls", cmd);
+   // execvp("mkdir", argv2);
+   // execvp("g++", argv3);
+
+    cout << "i'm a child" << endl;  // prints out if fork succeeded then the child process is created
 
    }
 
-   else
-    {
-	perror("There was an error in the fork()");
-	wait(NULL);
-	cout << "I'm a parent." << endl;
-	} 
-  
+  else
+  {
+   wait(0);
+   cout << "I'm a parent." << endl;
+
+  }
+
    return(0);
 
 }
 
+
+char *String_Parsing(int argc, char *argv[])
+{
+     
+
+}
