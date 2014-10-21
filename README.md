@@ -28,7 +28,10 @@ rshell
 ```
 ```
 rshell:
-Makefile
+
+bin/
+
+LICENSE
 
 README.md
 
