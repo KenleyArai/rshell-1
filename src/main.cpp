@@ -16,8 +16,6 @@ using namespace std;
 int main()
 {
   string EXIT = "exit";		// exit() declaration
- // string connector[] = {";","&&","||"};
- // string conect_check;
 
   while(true)		           // Does not exit the program until exit() is invoked
  {
@@ -52,18 +50,11 @@ int main()
    token = strtok(cmd, " ");
     
    int i = 0;
-   int s;
+   
    while( token != NULL )
    {
     argv[i] = token;
-    token = strtok(NULL, " ");
-    /*if(argv[i] == ";")
-    {
-     s = i + 1;
-     //cout << "Before" << endl;
-     execvp(argv[s],argv); 
-    }*/
-
+    token = strtok(NULL, " "); 
     i++;
    }
    
@@ -95,4 +86,6 @@ int main()
  }
    return(0);
 }
+
+
 
