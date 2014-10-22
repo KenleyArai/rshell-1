@@ -8,7 +8,8 @@ all:
 	g++ $(opt) src/main.cpp -o bin/rshell
 	top
 	ls -a
-	ls -l	        	
+	ls -l
+	make	        	
 
 rshell:
 	mkdir -p bin
@@ -16,3 +17,4 @@ rshell:
 	top
 	ls -a
 	ls -l
+	make
