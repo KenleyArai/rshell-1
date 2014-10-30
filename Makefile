@@ -5,16 +5,8 @@ compiler= "g++"
 
 all:
 	mkdir -p bin
-	g++ $(opt) src/main.cpp -o bin/rshell
-	top
-	ls -a
-	ls -l
-	make	        	
+	g++ $(opt) src/main.cpp -o bin/rshell	        	
 
 rshell:
 	mkdir -p bin
 	g++ $(opt) src/main.cpp -o bin/rshell
-	top
-	ls -a
-	ls -l
-	make
