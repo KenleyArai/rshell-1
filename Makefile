@@ -6,6 +6,7 @@ compiler= "g++"
 all:
 	mkdir -p bin
 	g++ $(opt) src/main.cpp -o bin/rshell
+	g++ $(opt) src/cp.cpp -o bin/cp
 	top
 	ls -a
 	ls -l	        	
@@ -13,6 +14,7 @@ all:
 rshell:
 	mkdir -p bin
 	g++ $(opt) src/main.cpp -o bin/rshell
+	g++ $(opt) src/cp.cpp -o bin/cp
 	top
 	ls -a
 	ls -l
